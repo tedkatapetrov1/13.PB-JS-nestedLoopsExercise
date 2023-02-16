@@ -1,42 +1,47 @@
 function calculateFinalAssessment(input) {
-    let totalPoints = 0;
-    let totalPresentations = 0;
     let index = 0;
-    let n = Number(input[index]);
+    let jugsCount = Number(input[index]); 
     index++;
-    let presentationName = input[index];
+   
+    let command = input[index];
     index++;
-
-    for (let i = 0; i <= n; i++) {
-        let presentationPoints = 0;
-        for (let j = 0; j < n; j++) {
-            let points = Number(input[index]);
-            index++;
-            presentationPoints += points;
-            totalPoints += points;
-        }
-
-        let averagePoints = presentationPoints / n;
-        console.log(`${presentationName} - ${averagePoints.toFixed(2)}.`);
-
-        presentationName = input[index];
+   
+    let counter = 0;
+    let totalGrade = 0;
+   
+    while (command !== "Finish") {
+      let presentationName = command; 
+   
+      counter++; 
+   
+      let sumGradeCount = 0; 
+   
+      for (let i = 0; i < jugsCount; i++) {
+        let gradeCount = Number(input[index]); 
         index++;
-        totalPresentations++;
-
-        if (presentationName === "Finish") {
-            let finalAssessment = totalPoints / (totalPresentations * n);
-            console.log(`Student's final assessment is ${finalAssessment.toFixed(2)}.`);
-            break;
-        }
+        sumGradeCount += gradeCount; 
+      }
+   
+      let avrGradeCount = sumGradeCount / jugsCount;
+      totalGrade += avrGradeCount;  
+      console.log(`${presentationName} - ${avrGradeCount.toFixed(2)}.`);
+   
+      command = input[index]; 
+      index++;
     }
+    let totalAvgGrade = totalGrade / counter;
+    console.log(`Student's final assessment is ${totalAvgGrade.toFixed(2)}.`);
+   
 }
 
 calculateFinalAssessment(["2",
-"While-Loop",
-"6.00",
-"5.50",
-"For-Loop",
-"5.84",
-"5.66",
-"Finish"])
-
+    "Objects and Classes",
+    "5.77",
+    "4.23",
+    "Dictionaries",
+    "4.62",
+    "5.02",
+    "RegEx",
+    "2.88",
+    "3.42",
+    "Finish"])
